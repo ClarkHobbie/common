@@ -7,20 +7,48 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.ltsllc</groupId>
-    <artifactId>common</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>commons</artifactId>
+    <version>1.0</version>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>17</source>
+                    <target>17</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <dependencies>
+
         <dependency>
             <groupId>org.bouncycastle</groupId>
             <artifactId>bcmail-jdk15</artifactId>
             <version>1.46</version>
         </dependency>
 
+        <!-- log4j -->
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.17.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.17.1</version>
+        </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk15on -->
         <dependency>
             <groupId>org.bouncycastle</groupId>
-            <artifactId>bcpkix-jdk15on</artifactId>
-            <version>1.48</version>
+            <artifactId>bcprov-jdk15on</artifactId>
+            <version>1.57</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
@@ -42,14 +70,20 @@
 
 
         <!-- commons -->
+
         <dependency>
             <groupId>com.ltsllc</groupId>
             <artifactId>commons</artifactId>
             <version>1.0</version>
             <scope>system</scope>
-            <systemPath>C:/Users/Clark/IdeaProjects/commons/out/artifacts/commons_1_0_SNAPSHOT_jar/commons.jar</systemPath>
+            <systemPath>C:/Users/Clark/IdeaProjects/commons/out/artifacts/commons_1_0_jar/commons.jar</systemPath>
         </dependency>
 
+
     </dependencies>
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+    </properties>
 
 </project>

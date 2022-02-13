@@ -17,6 +17,7 @@
 package com.ltsllc.commons.util;
 
 
+import org.bouncycastle.asn1.x500.X500Name;
 import org.bouncycastle.asn1.x509.AlgorithmIdentifier;
 import org.bouncycastle.asn1.x509.SubjectPublicKeyInfo;
 import org.bouncycastle.asn1.x509.X509CertificateStructure;
@@ -25,15 +26,13 @@ import org.bouncycastle.cert.X509v3CertificateBuilder;
 import org.bouncycastle.crypto.params.AsymmetricKeyParameter;
 import org.bouncycastle.crypto.util.PrivateKeyFactory;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
-import org.bouncycastle.openssl.PEMParser;
 import org.bouncycastle.openssl.PEMWriter;
-import org.bouncycastle.openssl.jcajce.JcaPEMKeyConverter;
 import org.bouncycastle.operator.ContentSigner;
 import org.bouncycastle.operator.DefaultDigestAlgorithmIdentifierFinder;
 import org.bouncycastle.operator.DefaultSignatureAlgorithmIdentifierFinder;
 import org.bouncycastle.operator.OperatorCreationException;
 import org.bouncycastle.operator.bc.BcRSAContentSignerBuilder;
-import sun.security.x509.X500Name;
+
 
 import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
@@ -431,14 +430,17 @@ public class Utils {
         return byteBuffer.array();
     }
 
+    /*
     public static PublicKey pemStringToPublicKey(String pemString) throws IOException {
         StringReader stringReader = new StringReader(pemString);
-        
+
         PEMParser pemParser = new PEMParser(stringReader);
         SubjectPublicKeyInfo subjectPublicKeyInfo = (SubjectPublicKeyInfo) pemParser.readObject();
         JcaPEMKeyConverter converter = new JcaPEMKeyConverter().setProvider(new BouncyCastleProvider());
         return converter.getPublicKey(subjectPublicKeyInfo);
     }
+    */
+
 
     public static String publicKeyToPemString(PublicKey publicKey) throws IOException {
         StringWriter stringWriter = new StringWriter();
@@ -535,6 +537,7 @@ public class Utils {
         return stringWriter.toString();
     }
 
+    /*
     public static PublicKey pemStringToPublicKey(String pemString, String password) throws IOException {
         if (password == null)
             return pemStringToPublicKey(pemString);
@@ -545,10 +548,13 @@ public class Utils {
         }
     }
 
-    public static PublicKey convertPemStringToPublicKey (String pemString, String password) {
+     */
+
+    public static PublicKey convertPemStringToPublicKey(String pemString, String password) {
         return null;
     }
 
+    /*
     public static PublicKey readPublicKeyFromPemFile(String filename) throws IOException {
         String pemFileContents = readAsString(filename);
         StringReader stringReader = new StringReader(pemFileContents);
@@ -558,6 +564,7 @@ public class Utils {
         converter.setProvider(new BouncyCastleProvider());
         return converter.getPublicKey(subjectPublicKeyInfo);
     }
+    */
 
     public static byte[] readBytes(ServletInputStream inputStream) throws IOException {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -570,41 +577,42 @@ public class Utils {
         return byteArrayOutputStream.toByteArray();
     }
 
-    public static X509Certificate sign(PrivateKey caPrivate, PublicKey signeePublic,
-                                       X500Name issuer, Date notValidBefore, Date notValidAfter, BigInteger serialNumber,
-                                       X500Name subject)
-            throws InvalidKeyException, NoSuchAlgorithmException,
-            NoSuchProviderException, SignatureException, IOException,
-            OperatorCreationException, CertificateException {
+    /*
+        public static X509Certificate sign(PrivateKey caPrivate, PublicKey signeePublic,
+                                           X500Name issuer, Date notValidBefore, Date notValidAfter, BigInteger serialNumber,
+                                           X500Name subject)
+                throws InvalidKeyException, NoSuchAlgorithmException,
+                NoSuchProviderException, SignatureException, IOException,
+                OperatorCreationException, CertificateException {
 
-        AlgorithmIdentifier sigAlgId = new DefaultSignatureAlgorithmIdentifierFinder()
-                .find("SHA1withRSA");
-        AlgorithmIdentifier digAlgId = new DefaultDigestAlgorithmIdentifierFinder()
-                .find(sigAlgId);
+            AlgorithmIdentifier sigAlgId = new DefaultSignatureAlgorithmIdentifierFinder()
+                    .find("SHA1withRSA");
+            AlgorithmIdentifier digAlgId = new DefaultDigestAlgorithmIdentifierFinder()
+                    .find(sigAlgId);
 
-        AsymmetricKeyParameter foo = PrivateKeyFactory.createKey(caPrivate.getEncoded());
-        SubjectPublicKeyInfo keyInfo = SubjectPublicKeyInfo.getInstance(signeePublic.getEncoded());
+            AsymmetricKeyParameter foo = PrivateKeyFactory.createKey(caPrivate.getEncoded());
+            SubjectPublicKeyInfo keyInfo = SubjectPublicKeyInfo.getInstance(signeePublic.getEncoded());
 
-        org.bouncycastle.asn1.x500.X500Name bcIssuer = new org.bouncycastle.asn1.x500.X500Name(issuer.getName());
-        org.bouncycastle.asn1.x500.X500Name bcSubject = new org.bouncycastle.asn1.x500.X500Name(subject.getName());
-        X509v3CertificateBuilder myCertificateGenerator = new X509v3CertificateBuilder(bcIssuer, serialNumber,
-                notValidBefore, notValidAfter, bcSubject, keyInfo);
+            org.bouncycastle.asn1.x500.X500Name bcIssuer = new org.bouncycastle.asn1.x500.X500Name(issuer.getName());
+            org.bouncycastle.asn1.x500.X500Name bcSubject = new org.bouncycastle.asn1.x500.X500Name(subject.getName());
+            X509v3CertificateBuilder myCertificateGenerator = new X509v3CertificateBuilder(bcIssuer, serialNumber,
+                    notValidBefore, notValidAfter, bcSubject, keyInfo);
 
-        ContentSigner sigGen = new BcRSAContentSignerBuilder(sigAlgId, digAlgId)
-                .build(foo);
+            ContentSigner sigGen = new BcRSAContentSignerBuilder(sigAlgId, digAlgId)
+                    .build(foo);
 
-        X509CertificateHolder holder = myCertificateGenerator.build(sigGen);
-        org.bouncycastle.asn1.x509.X509CertificateStructure certificate = holder.toASN1Structure();
+            X509CertificateHolder holder = myCertificateGenerator.build(sigGen);
+            org.bouncycastle.asn1.x509.X509CertificateStructure certificate = holder.toASN1Structure();
 
-        CertificateFactory cf = CertificateFactory.getInstance("X.509", "BC");
+            CertificateFactory cf = CertificateFactory.getInstance("X.509", "BC");
 
-        InputStream is1 = new ByteArrayInputStream(certificate.getEncoded());
-        X509Certificate theCert = (X509Certificate) cf.generateCertificate(is1);
-        is1.close();
-        return theCert;
-    }
-
-    public static String toStacktrace (Throwable t) {
+            InputStream is1 = new ByteArrayInputStream(certificate.getEncoded());
+            X509Certificate theCert = (X509Certificate) cf.generateCertificate(is1);
+            is1.close();
+            return theCert;
+        }
+    */
+    public static String toStacktrace(Throwable t) {
         PrintWriter printWriter = null;
         try {
             StringWriter stringWriter = new StringWriter();
@@ -617,7 +625,7 @@ public class Utils {
         }
     }
 
-    public static String readTextFile (String filename) throws IOException {
+    public static String readTextFile(String filename) throws IOException {
         StringWriter stringWriter = new StringWriter();
         FileReader fileReader = null;
         try {
@@ -634,7 +642,7 @@ public class Utils {
         return fileReader.toString();
     }
 
-    public static void writeTextFile (String filename, String content) throws IOException {
+    public static void writeTextFile(String filename, String content) throws IOException {
         FileWriter fileWriter = null;
         try {
             fileWriter = new FileWriter(filename);
@@ -644,7 +652,8 @@ public class Utils {
         }
     }
 
-    public static PublicKey toPublicKey (String pem) throws IOException {
+    /*
+    public static PublicKey toPublicKey(String pem) throws IOException {
         StringReader stringReader = new StringReader(pem);
         PEMParser parser = new PEMParser(stringReader);
         SubjectPublicKeyInfo subjectPublicKeyInfo = (SubjectPublicKeyInfo) parser.readObject();
@@ -653,7 +662,9 @@ public class Utils {
         return converter.getPublicKey(subjectPublicKeyInfo);
     }
 
-    public static PrivateKey toPrivateKey (String pem) throws IOException, GeneralSecurityException {
+
+
+    public static PrivateKey toPrivateKey(String pem) throws IOException, GeneralSecurityException {
         StringReader stringReader = new StringReader(pem);
         PEMParser parser = new PEMParser(stringReader);
         PKCS8EncodedKeySpec pkcs8EncodedKeySpec = (PKCS8EncodedKeySpec) parser.readObject();
@@ -661,7 +672,9 @@ public class Utils {
         return kf.generatePrivate(pkcs8EncodedKeySpec);
     }
 
-    public static String toPem (PublicKey publicKey) throws IOException {
+*/
+
+    public static String toPem(PublicKey publicKey) throws IOException {
         StringWriter stringWriter = new StringWriter();
         PEMWriter pemWriter = new PEMWriter(stringWriter);
         pemWriter.writeObject(publicKey);
@@ -669,7 +682,7 @@ public class Utils {
         return stringWriter.toString();
     }
 
-    public static String toPem (PrivateKey privateKey) throws IOException {
+    public static String toPem(PrivateKey privateKey) throws IOException {
         StringWriter stringWriter = new StringWriter();
         PEMWriter pemWriter = new PEMWriter(stringWriter);
         pemWriter.writeObject(privateKey);
@@ -681,25 +694,24 @@ public class Utils {
         return s1.equalsIgnoreCase(s2);
     }
 
-    static public boolean stringListsAreEquivalent  (List<String> l1, List<String> l2) {
+    static public boolean stringListsAreEquivalent(List<String> l1, List<String> l2) {
         if (l1.size() != l2.size())
             return false;
 
-        for (int i = 0;i < l1.size(); i++) {
+        for (int i = 0; i < l1.size(); i++) {
             String s1 = (String) l1.get(i);
             String s2 = (String) l2.get(i);
-            if (!(stringsAreEquivalent(s1,s2)))
+            if (!(stringsAreEquivalent(s1, s2)))
                 return false;
         }
 
         return true;
     }
 
-    static public List toEquivalentList (List list) {
+    static public List toEquivalentList(List list) {
         List result = new ArrayList(list.size());
 
-        for (Object object : list)
-        {
+        for (Object object : list) {
             result.add(object);
         }
 
