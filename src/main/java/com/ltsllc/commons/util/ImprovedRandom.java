@@ -67,6 +67,10 @@ public class ImprovedRandom {
         random.nextBytes(array);
     }
 
+    public int nextInt () {
+        return random.nextInt();
+    }
+    
     public int nextInt (int atLeastAndIncluding, int upToAndIncluding)
     {
         int interval = upToAndIncluding - atLeastAndIncluding + 1;

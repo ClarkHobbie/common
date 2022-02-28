@@ -24,6 +24,19 @@ public class ImprovedFile extends File {
 
     public static int BUFFER_SIZE = 8192;
 
+    /**
+     * Create an ImprovedFile (File.createTempFile returns File).
+     *
+     * @param prefix       The prefix for the new temp file.
+     * @return             The new temp file as an ImprovedFile.
+     * @throws IOException File.createTempFile throws this
+     * @see    File#createTempFile
+     */
+    public static ImprovedFile createImprovedTempFile (String prefix) throws IOException {
+        ImprovedFile temp = new ImprovedFile(File.createTempFile(prefix,""));
+        return temp;
+    }
+
     /*
      * make a copy of the file and return it
      *
@@ -71,7 +84,7 @@ public class ImprovedFile extends File {
             try {
 
                 if (fileOutputStream != null) {
-                    fileInputStream.close();
+                    fileOutputStream.close();
                     fileOutputStream = null;
                 }
             } catch (IOException ioException) {
