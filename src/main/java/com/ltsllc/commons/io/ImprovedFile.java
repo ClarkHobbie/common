@@ -38,28 +38,19 @@ public class ImprovedFile extends File {
     }
 
     /*
-     * make a copy of the file and return it
+     * Copy the file to another file that the method creates
      *
-     * get a temp location and copy the contents of the file and return that file.
+     * @param newFile The file to copy to
      */
-    public ImprovedFile copy() throws LtsllcException {
-        ImprovedFile temp;
-
-        try {
-            File whatever = File.createTempFile("temp_", "");
-            temp = new ImprovedFile(whatever);
-        } catch (IOException ioException) {
-            throw new LtsllcException("exception creating temp file", ioException);
-        }
-
+    public void copyTo(ImprovedFile newFile) throws LtsllcException {
         FileInputStream fileInputStream;
         FileOutputStream fileOutputStream;
 
         try {
             fileInputStream = new FileInputStream(this);
-            fileOutputStream = new FileOutputStream(temp);
+            fileOutputStream = new FileOutputStream(newFile);
         } catch (FileNotFoundException fileNotFoundException) {
-            throw new LtsllcException("error opening file or tempfile", fileNotFoundException);
+            throw new LtsllcException("error opening file or newFile", fileNotFoundException);
         }
 
         byte[] buffer = new byte[BUFFER_SIZE];
@@ -88,10 +79,41 @@ public class ImprovedFile extends File {
                     fileOutputStream = null;
                 }
             } catch (IOException ioException) {
-                throw new LtsllcException("exception trying to close temp file", ioException);
+                throw new LtsllcException("exception trying to close newFile", ioException);
             }
         }
+    }
 
-        return temp;
+    /**
+     * Change the file's time of last modification
+     *
+     * This method creates a file if not present, and updates its time of last write if the file does exist.
+     *
+     * @throws IOException If there is a problem with the file
+     */
+    public void touch () throws IOException {
+        FileOutputStream fileOutputStream = null;
+        try {
+            fileOutputStream = new FileOutputStream(this,true);
+        } finally {
+            if (fileOutputStream != null) {
+                fileOutputStream.close();
+            }
+        }
+    }
+
+    /**
+     * Copy the file to one with the name equal to ".temp" appended to it
+     *
+     * @return The new file.
+     * @throws LtsllcException If there is a problem copying the file.
+     */
+    public ImprovedFile copy () throws LtsllcException {
+        String newFileName = this.toString() + ".temp";
+        ImprovedFile newFile = new ImprovedFile(newFileName);
+
+        copyTo(newFile);
+
+        return newFile;
     }
 }
