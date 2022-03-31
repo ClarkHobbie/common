@@ -116,4 +116,28 @@ public class ImprovedFile extends File {
 
         return newFile;
     }
+
+    /**
+     * Attempt to back up a file
+     * <P>
+     *     This method is just shorthand for renaming a file to another with a specified suffix.  The method first
+     *     checks to see if this file already exists, and, if it does then it throws an exception.
+     * </P>
+     * <P>
+     *     The backup file is just the original file with the suffix appended to it.
+     * </P>
+     * @param suffix The suffix for the backup file.
+     * @return The new file
+     * @throws LtsllcException This is thrown if the backup file already exists.
+     */
+    public ImprovedFile backup (String suffix) throws LtsllcException {
+        ImprovedFile backup = new ImprovedFile(getName() + suffix);
+        if (backup.exists()) {
+            throw new LtsllcException("file exists " + backup);
+        }
+
+        renameTo(backup);
+
+        return backup;
+    }
 }
