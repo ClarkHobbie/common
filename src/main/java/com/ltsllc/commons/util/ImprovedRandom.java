@@ -137,4 +137,9 @@ public class ImprovedRandom {
         result = ((next % 2) == 0);
         return result;
     }
+
+    public <T> T choose (Class<T> clazz, Object[] candidates) {
+        int index = this.nextInt(0, candidates.length - 1);
+        return (T) candidates[index];
+    }
 }
