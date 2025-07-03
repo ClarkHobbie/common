@@ -1,6 +1,11 @@
 package com.ltsllc.commons.io;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 
 /******************************************************************************
@@ -19,7 +24,9 @@ public class TextFile {
 
     /* an image of the file in memory */
 
-    protected char[] buffer;
+    protected List<String> text;
+
+    protected Path path;
 
     /*
      * Create a new instance of the class and read into memory if it exists.
@@ -30,44 +37,83 @@ public class TextFile {
     public TextFile(File inFile) throws IOException {
         file = inFile;
         if (file.exists()) {
-            readFile();
+            load();
         }
     }
 
 
-    /*
-     * read in the associated text file
-     *
-     * @returns Nothing, calling this method simply reads the associated
-     *          text file into memory
-     */
-    public void readFile() throws IOException {
-        FileInputStream fis = new FileInputStream(file);
+    public void setText (String[] newText) {
+        ArrayList<String> arrayList = new ArrayList<>();
+
+        for (String string : newText) {
+            text.add(string);
+        }
+    }
+
+    public void write() {
+        FileWriter fileWriter = null;
+        BufferedWriter bufferedWriter = null;
+        File file = path.toFile();
+
+        if (file.exists()) {
+            file.delete();
+        }
+
         try {
-            int fileSize = (int) file.length();
-            buffer = new char[fileSize];
+            fileWriter = new FileWriter(file);
+        } catch (IOException e) {
+            throw new RuntimeException("cannot open file for writing, file " + file, e);
+        }
 
-            int bytesRead = 0;
-            int c = fis.read();
-
-            while (c != -1) {
-                buffer[bytesRead] = (char) c;
-                bytesRead++;
-                c = fis.read();
+        bufferedWriter = new BufferedWriter(fileWriter);
+        Iterator<String> iterator = text.iterator();;
+        while (iterator.hasNext())
+        {
+            String line = iterator.next();
+            try {
+                bufferedWriter.write(line);
+                bufferedWriter.newLine();
+            } catch (IOException e) {
+                throw new RuntimeException("error writing file, " + file, e);
             }
+        }
 
-        } finally {
-            fis.close();
+        try {
+            bufferedWriter.close();
+            fileWriter.close();
+        } catch (IOException e) {
+            throw new RuntimeException("error closing text file, " + file, e);
         }
     }
 
-    /*
-     * get a java.io.Reader for the file
-     *
-     * This method gets a java.io.Reader to the loaded file
-     */
-    public Reader getReader() {
-        CharArrayReader car = new CharArrayReader(buffer);
-        return car;
+
+    public void delete() {
+        try {
+            if (Files.exists(path))
+                Files.delete(path);
+        } catch (IOException e) {
+            throw new RuntimeException("error deleting text file, " + path, e);
+        }
+    }
+
+    public void load() {
+        try {
+            text = Files.readAllLines(path);
+        } catch (IOException e) {
+            throw new RuntimeException("error reading file, " + path.toFile(),e);
+        }
+    }
+
+    public InputStream getInputStream () {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        for (String string : text) {
+            try {
+                baos.write(string.getBytes());
+            } catch (IOException e) {
+                throw new RuntimeException("error writing to ByteArrayOutputStream", e);
+            }
+        }
+
+        return new ByteArrayInputStream(baos.toByteArray());
     }
 }
