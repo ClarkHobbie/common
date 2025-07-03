@@ -11,6 +11,15 @@ class TextFileTest {
      **************************************************************************/
     @Test
     void setText() {
+        String[] text = {
+                "hi there",
+                "how are you?"
+        };
+        TextFile textFile = new TextFile();
+        textFile.setText(text);
+
+        assert (textFile.getText().size() > 0);
+        assert (textFile.getText().get(0).equalsIgnoreCase("hi there"));
     }
 
     @Test

@@ -24,9 +24,25 @@ public class TextFile {
 
     /* an image of the file in memory */
 
-    protected List<String> text;
+    protected List<String> text = new ArrayList<>();
 
     protected Path path;
+
+    /**************************************************************************
+     * Create an empty instance of the class.
+     *
+     **************************************************************************/
+    public TextFile() {
+    }
+
+    /**************************************************************************
+     * Get the text in the file.
+     *
+     * @return The text in the file.
+     *************************************************************************/
+    public List<String> getText() {
+        return text;
+    }
 
     /*
      * Create a new instance of the class and read into memory if it exists.
