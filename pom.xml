@@ -60,12 +60,14 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>RELEASE</version>
+            <version>5.13.1</version> <!-- Change to your desired version -->
+            <scope>test</scope>
         </dependency>
+            <!-- Add or update other JUnit 5 dependencies like junit-jupiter-engine if needed -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>4.13.2</version>
         </dependency>
 
 
@@ -73,11 +75,13 @@
 
         <dependency>
             <groupId>com.ltsllc</groupId>
-            <artifactId>commons</artifactId>
+            <artifactId>commons.jar</artifactId>
             <version>1.0</version>
             <scope>system</scope>
-            <systemPath>C:/Users/Clark/IdeaProjects/commons/out/artifacts/commons_1_0_jar/commons.jar</systemPath>
+            <systemPath>C:/Users/clark/IdeaProjects/common/out/artifacts/commons_jar/commons.jar</systemPath>
         </dependency>
+
+
 
 
     </dependencies>
