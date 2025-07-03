@@ -6,6 +6,14 @@ import org.junit.Test;
 public class TestUncheckedLtsllcException {
     @Test
     public void constructor () {
-        throw new UncheckedLtsllcException("hi there");
+        UncheckedLtsllcException uncheckedLtsllcException = null;
+
+        try {
+            throw new UncheckedLtsllcException("hi there");
+        } catch (UncheckedLtsllcException e) {
+            uncheckedLtsllcException = e;
+        }
+
+        assert (uncheckedLtsllcException != null);
     }
 }
