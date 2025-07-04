@@ -21,14 +21,16 @@ public class ImprovedProperties extends Properties {
      * create an empty properties
      */
     public ImprovedProperties () {
-        super();
     }
 
-    /*
+    /**
      * get an integer property
      *
      * This method translates a String property to an integer property.  In the case where the named property
      * is null, the method returns 0.
+     *
+     * @param name The name of the property to get.
+     * @return The property value
      */
     public int getIntProperty (String name) {
         logger.debug("entering getIntProperty with name = " + name);
@@ -42,10 +44,14 @@ public class ImprovedProperties extends Properties {
         return Integer.parseInt(value);
     }
 
-    /*
+    /**
      * get an integer property, with a default value.
      *
      * If the named property is null, then the method returns the default value.
+     *
+     * @param name The name of the property.
+     * @param defaultValue The value to return if the property is undefined,
+     *                     or there is a problem converting it to an integer.
      */
     public int getIntProperty(String name, String defaultValue) {
         String propertyValue = getProperty(name);
@@ -56,12 +62,13 @@ public class ImprovedProperties extends Properties {
         return Integer.parseInt(propertyValue);
     }
 
-    /*
+    /**
      * set a bunch of properties if they are undefined (null)
      *
      * This method sets properties if they are null.
      *
-     * @param properties The properties to define if they are currently null
+     * @param properties The properties and values to define if they are
+     *                   currently null.
      */
     public void setIfNull (Properties properties){
         logger.debug("entering setIfNull with properties = " + properties);
