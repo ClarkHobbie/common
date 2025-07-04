@@ -1,9 +1,9 @@
 package com.ltsllc.commons.util;
 
-import java.util.Properties;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.Properties;
 
 /*
  * An improved version of the Properties class

@@ -1,10 +1,11 @@
 package com.ltsllc.commons.io;
 
+import com.ltsllc.commons.util.ImprovedPaths;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 
@@ -44,14 +45,19 @@ public class TextFile {
         return text;
     }
 
+    public TextFile (String fileName) {
+        File file1 = new File(fileName);
+        this (file1);
+    }
     /*
      * Create a new instance of the class and read into memory if it exists.
      *
      * After calling this @readFile should return a java.io.reader to the
      * file.
      */
-    public TextFile(File inFile) throws IOException {
+    public TextFile(File inFile) {
         file = inFile;
+        path = ImprovedPaths.toPath(inFile);
         if (file.exists()) {
             load();
         }
@@ -60,6 +66,7 @@ public class TextFile {
 
     public void setText (String[] newText) {
         ArrayList<String> arrayList = new ArrayList<>();
+        text = new ArrayList<>();
 
         for (String string : newText) {
             text.add(string);
@@ -82,12 +89,10 @@ public class TextFile {
         }
 
         bufferedWriter = new BufferedWriter(fileWriter);
-        Iterator<String> iterator = text.iterator();;
-        while (iterator.hasNext())
-        {
-            String line = iterator.next();
+        for (String string : text) {
+
             try {
-                bufferedWriter.write(line);
+                bufferedWriter.write(string);
                 bufferedWriter.newLine();
             } catch (IOException e) {
                 throw new RuntimeException("error writing file, " + file, e);
@@ -114,6 +119,7 @@ public class TextFile {
 
     public void load() {
         try {
+            path = ImprovedPaths.toPath(file);
             text = Files.readAllLines(path);
         } catch (IOException e) {
             throw new RuntimeException("error reading file, " + path.toFile(),e);
@@ -131,5 +137,18 @@ public class TextFile {
         }
 
         return new ByteArrayInputStream(baos.toByteArray());
+    }
+
+    public Reader getReader () {
+        return new InputStreamReader(getInputStream());
+    }
+
+    public void setText(ArrayList<String> list) {
+        String[] strings = list.toArray(getText().toArray(new String[0]));
+        setText(strings);
+    }
+
+    public void store() {
+        write();
     }
 }

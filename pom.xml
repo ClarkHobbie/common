@@ -45,42 +45,7 @@
 
 
         <!-- https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk15on -->
-        <dependency>
-            <groupId>org.bouncycastle</groupId>
-            <artifactId>bcprov-jdk15on</artifactId>
-            <version>1.57</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>5.13.1</version> <!-- Change to your desired version -->
-            <scope>test</scope>
-        </dependency>
-            <!-- Add or update other JUnit 5 dependencies like junit-jupiter-engine if needed -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13.2</version>
-        </dependency>
-
-
-        <!-- commons -->
-
-        <dependency>
-            <groupId>com.ltsllc</groupId>
-            <artifactId>commons.jar</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>C:/Users/clark/IdeaProjects/common/out/artifacts/commons_jar/commons.jar</systemPath>
-        </dependency>
-
+C
 
 
 
