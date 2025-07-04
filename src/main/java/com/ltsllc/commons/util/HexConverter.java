@@ -4,9 +4,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/******************************************************************************
+ * A class that converts bytes to hex strings.
+ */
 public class HexConverter {
-    StringBuilder stringBuilder;
-
+/*
     public static String toHexString (byte aByte) {
         StringBuilder stringBuilder;
 
@@ -44,24 +46,38 @@ public class HexConverter {
         return stringBuilder2.toString();
     }
 
+
     public static String toHexString (byte[] byteArray)
     {
         StringBuilder stringBuilder = new StringBuilder(4 * byteArray.length);
         for (byte current : byteArray)
         {
-            stringBuilder.append(current);
+            String string = toHexString(current);
+            stringBuilder.append(string);
         }
 
         return stringBuilder.toString();
     }
 
+
     public static byte[] toByteArray (String s)
     {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        for (char c : s.toCharArray())
-        {
-            baos.write(c);
+        for (int index = 0; index < s.length(); index++) {
+            String subString = s.substring(index, index + 1);
+            byte b = toByte(subString);
+            baos.write(b);
         }
         return baos.toByteArray();
     }
+
+    public static byte toByte (String string) {
+        int index = theChars.indexOf(string.toCharArray()[0]);
+        int higNibble = index << 4;
+        index = theChars.indexOf(string.toCharArray()[1]);
+        byte b = (byte) (higNibble & index);
+        return b;
+    }
+
+    */
 }

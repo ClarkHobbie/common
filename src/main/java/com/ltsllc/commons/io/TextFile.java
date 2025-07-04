@@ -10,13 +10,10 @@ import java.util.List;
 
 
 /******************************************************************************
- *
  * A file containing text
  *
- * This class represents a text file.  When created, it reads in the file
- * and makes available via getReader, which returns a java.io.Reader.
- *
- ******************************************************************************
+ * This class represents a text file, which it represents as a {@link List}
+ * of strings called text.
  */
 public class TextFile {
     /* the associated file */
@@ -32,7 +29,7 @@ public class TextFile {
     /**************************************************************************
      * Create an empty instance of the class.
      *
-     **************************************************************************/
+     */
     public TextFile() {
     }
 
@@ -40,7 +37,7 @@ public class TextFile {
      * Get the text in the file.
      *
      * @return The text in the file.
-     *************************************************************************/
+     */
     public List<String> getText() {
         return text;
     }
@@ -49,11 +46,11 @@ public class TextFile {
         File file1 = new File(fileName);
         this (file1);
     }
-    /*
+
+    /**************************************************************************
      * Create a new instance of the class and read into memory if it exists.
      *
-     * After calling this @readFile should return a java.io.reader to the
-     * file.
+     * @param inFile The file that this instance represents.
      */
     public TextFile(File inFile) {
         file = inFile;

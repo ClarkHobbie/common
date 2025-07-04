@@ -21,8 +21,7 @@ import java.util.*;
 
 /**
  * A collection of routines that are useful in processing MirandaProperties objects
- * <p>
- * Created by Clark on 12/30/2016.
+ *
  */
 public class PropertiesUtils {
     /**

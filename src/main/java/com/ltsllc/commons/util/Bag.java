@@ -3,8 +3,10 @@ package com.ltsllc.commons.util;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Clark on 2/23/2017.
+/******************************************************************************
+ * A class that returns its items in a random order.
+ *
+ * @see java.util.Random
  */
 public class Bag<E> {
     private static ImprovedRandom random = new ImprovedRandom();

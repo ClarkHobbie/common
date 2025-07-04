@@ -20,15 +20,12 @@ import java.security.SecureRandom;
 import java.util.Random;
 
 /**
- * Created by Clark on 2/24/2017.
+ * A subclass of {@link Random} that has some useful additions.
+ *
  */
-public class ImprovedRandom {
+public class ImprovedRandom extends SecureRandom {
     private boolean wasNegative;
     private Random random;
-
-    public Random getRandom() {
-        return random;
-    }
 
     public boolean getWasNegative () {
         return wasNegative;
@@ -39,11 +36,6 @@ public class ImprovedRandom {
     }
 
     public ImprovedRandom () {
-        this.random = new SecureRandom();
-    }
-
-    public ImprovedRandom (Random random) {
-        this.random = random;
     }
 
     public int nextIndex(int length) {
@@ -91,7 +83,7 @@ public class ImprovedRandom {
 
     public long nextNonNegativeLong () {
         setWasNegative(false);
-        long value = getRandom().nextLong();
+        long value = nextLong();
 
         if (value < 0) {
             value = -1 * value;
@@ -103,7 +95,7 @@ public class ImprovedRandom {
 
     public int nextNonNegativeInt () {
         setWasNegative(false);
-        int value = getRandom().nextInt();
+        int value = nextInt();
         if (value < 0) {
             value = -1 * value;
             setWasNegative(true);
@@ -130,10 +122,11 @@ public class ImprovedRandom {
     }
 
     public boolean nextBoolean () {
-        boolean result;
-        int next = getRandom().nextInt();
-        result = ((next % 2) == 0);
-        return result;
+        int i = nextInt();
+        if (i < 0)
+            return false;
+        else
+            return true;
     }
 
     public <T> T choose (Class<T> clazz, Object[] candidates) {

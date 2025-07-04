@@ -14,14 +14,46 @@
  * limitations under the License.
  */
 
-package com.ltsllc.commons.commadline;
+package com.ltsllc.commons.application;
 
 import java.util.Properties;
 
+/******************************************************************************
+ * A command line.
+ *
+ * In order to be instantiable, a subclass must implement
+ * {@link #toSwitch(String)} and {@link #getUsageString()}.
+ *
+ * Command lines have switches that can be present or absent to control the
+ * application.  If the application has switches, it should subclass
+ * {@link Switches} to define them.
+ */
 abstract public class CommandLine {
+    /**************************************************************************
+     * Convert a string to a switch,
+     *
+     * The subclass should extend {@link Switches} to define the different
+     * switches for the application, and return one of them in this method.
+     *
+     * @param argument The string to convert.
+     * @return The corresponding switch.
+     */
     abstract public Switches toSwitch (String argument);
+
+    /**************************************************************************
+     * Return the string to print when the application doesn't have enough
+     * arguments.
+     *
+     * @return The string as defined above.
+     */
     abstract public String getUsageString();
 
+    /**************************************************************************
+     * The switches for the application.
+     *
+     * Subclasses should extend this enum and populate it with the switches
+     * the application uses.
+     */
     public enum Switches {
         Unknown(0),
         PlaceHolder(1),

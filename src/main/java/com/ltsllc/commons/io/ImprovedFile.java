@@ -5,6 +5,9 @@ import com.ltsllc.commons.LtsllcException;
 import java.io.*;
 import java.net.URI;
 
+/******************************************************************************
+ * A {@link File} with some useful methods.
+ */
 public class ImprovedFile extends File {
     public ImprovedFile (File file) {
         super(String.valueOf(file));
