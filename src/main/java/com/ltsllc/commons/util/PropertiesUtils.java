@@ -122,8 +122,9 @@ public class PropertiesUtils {
      *
      * <p>
      *     For each property in p2, there are two possibilities: it is not
-     *     defined in p1 or it is.  In the case where it is not defined, the
-     *     property is added. When it is defined, use the one defined by p1.
+     *     defined in p1 or it is defined.  In the case where it is not
+     *     defined,the property is added. When it is defined, use the one
+     *     defined by p1.
      * </p>
      *
      * @param p1 The first set of properties.
@@ -193,9 +194,9 @@ public class PropertiesUtils {
         return result;
     }
 
-    /**
-     * Return a list of Property objects that are the properties passed to
-     * this method.
+    /**************************************************************************
+     * Return a list of {@link Property} objects that are the properties passed
+     * to this method.
      *
      * @param properties The properties to convert.
      * @return See above.

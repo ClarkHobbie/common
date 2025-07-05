@@ -16,8 +16,8 @@
 
 package com.ltsllc.commons.util;
 
-/**
- * Created by Clark on 3/4/2017.
+/******************************************************************************
+ * A class that represents a property.
  */
 public class Property {
     private String name;
