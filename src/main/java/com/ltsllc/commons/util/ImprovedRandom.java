@@ -25,7 +25,6 @@ import java.util.Random;
  */
 public class ImprovedRandom extends SecureRandom {
     private boolean wasNegative;
-    private Random random;
 
     public boolean getWasNegative () {
         return wasNegative;
@@ -39,7 +38,7 @@ public class ImprovedRandom extends SecureRandom {
     }
 
     public int nextIndex(int length) {
-        int index = random.nextInt(length);
+        int index = nextInt(length);
 
         if (index < 0)
             index = -1 * index;
@@ -53,14 +52,6 @@ public class ImprovedRandom extends SecureRandom {
         return nextIndex(array.length);
     }
 
-    public void nextBytes(byte[] array) {
-        random.nextBytes(array);
-    }
-
-    public int nextInt () {
-        return random.nextInt();
-    }
-    
     public int nextInt (int atLeastAndIncluding, int upToAndIncluding)
     {
         int interval = upToAndIncluding - atLeastAndIncluding + 1;
@@ -68,17 +59,13 @@ public class ImprovedRandom extends SecureRandom {
             throw new IllegalArgumentException("negative interval");
         }
 
-        return atLeastAndIncluding + random.nextInt(interval);
+        return atLeastAndIncluding + nextInt(interval);
     }
 
     public byte nextByte () {
         byte[] buffer = new byte[1];
-        random.nextBytes(buffer);
+        nextBytes(buffer);
         return buffer[0];
-    }
-
-    public int nextInt (int lessThan) {
-        return random.nextInt(lessThan);
     }
 
     public long nextNonNegativeLong () {

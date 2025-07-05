@@ -78,7 +78,7 @@ public class PropertiesUtils {
 
             return stringWriter.toString();
         } finally {
-            Utils.closeIgnoreExceptions(printWriter);
+            printWriter.close();
         }
     }
 
@@ -103,11 +103,11 @@ public class PropertiesUtils {
                 try {
                     properties.load(fileInputStream);
                 } finally {
-                    Utils.closeIgnoreExceptions(fileInputStream);
+                    fileInputStream.close();
                 }
             }
         } finally {
-            Utils.closeIgnoreExceptions(fileInputStream);
+            fileInputStream.close();;
         }
 
         return properties;

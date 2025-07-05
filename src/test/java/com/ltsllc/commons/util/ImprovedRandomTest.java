@@ -8,7 +8,7 @@ import java.security.SecureRandom;
 public class ImprovedRandomTest extends TestCase {
     @Test
     public void choose () {
-        ImprovedRandom improvedRandom = new ImprovedRandom(new SecureRandom());
+        ImprovedRandom improvedRandom = new ImprovedRandom();
         Integer[] candidates = { 0,1,2,3};
         Integer i = improvedRandom.choose(Integer.class, candidates);
 

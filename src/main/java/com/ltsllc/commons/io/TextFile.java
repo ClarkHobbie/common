@@ -43,8 +43,12 @@ public class TextFile {
     }
 
     public TextFile (String fileName) {
-        File file1 = new File(fileName);
-        this (file1);
+        File inFile = new File(fileName);
+        file = inFile;
+        path = ImprovedPaths.toPath(inFile);
+        if (file.exists()) {
+            load();
+        }
     }
 
     /**************************************************************************

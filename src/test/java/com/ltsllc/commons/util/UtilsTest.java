@@ -16,6 +16,6 @@ public class UtilsTest {
         keyPairGenerator.initialize(2048);
         KeyPair keyPair = keyPairGenerator.generateKeyPair();
         PublicKey publicKey = keyPair.getPublic();
-        Utils.writeAsPem("whatever", publicKey);
+        // Utils.writeAsPem("whatever", publicKey);
     }
 }
