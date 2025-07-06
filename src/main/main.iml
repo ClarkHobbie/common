@@ -8,8 +8,5 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="commons" level="project" />
-    <orderEntry type="library" name="apache.logging.log4j.api1" level="project" />
-    <orderEntry type="library" name="hynnet.javax.servlet.api" level="project" />
-    <orderEntry type="library" name="guicedee.services.bouncycastle" level="project" />
   </component>
 </module>
