@@ -60,4 +60,5 @@ public class Bag<E> {
     public boolean isEmpty() {
         return components.isEmpty();
     }
+
 }
