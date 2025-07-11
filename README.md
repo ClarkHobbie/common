@@ -1,7 +1,7 @@
 # Introduction
 
 Commons is a library about providing a convenient way of performing common tasks.  For example,
-proving a Bag data structure.
+providing a Bag data structure.
 
 # Details
 
