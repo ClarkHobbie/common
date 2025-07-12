@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * A class that provides generally useful methods.
  * <P>
- *     The name of the class name was used because Intellij IDEA didn't like the name Utils for some reason.
+ *     The name of the class was used because Intellij IDEA didn't like the name Utils for some reason.
  * </P>
  *
  */
