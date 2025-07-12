@@ -7,7 +7,7 @@ import java.util.List;
 /******************************************************************************
  * A class that returns its items in a random order.
  *
- * @see java.util.Random
+ * @see ImprovedRandom
  */
 public class Bag<E> {
     private static ImprovedRandom random = new ImprovedRandom();
@@ -21,13 +21,21 @@ public class Bag<E> {
     }
 
     public void setComponents(List<E> components) {
-        this.components = components;
+        this.components = new ArrayList<>(components);
     }
 
     public void add (E item) {
         components.add(item);
     }
 
+    /**
+     * get the next item from the Bag and remove it from the Bag.
+     * <p>
+     * Note that this method is different from {@link List#get} in that the item returned is no longer contained in the
+     * Bag.  Note also that it picks the next item at random.
+     *
+     * @return The next item.
+     */
     public E get() {
         int index = random.nextIndex(components.size());
         return components.remove(index);
@@ -45,6 +53,11 @@ public class Bag<E> {
         return components.size();
     }
 
+    /**
+     * This is just a call to {@link #get()}.
+     * @return The next item.
+     * @see #get
+     */
     public E next() {
         return get();
     }

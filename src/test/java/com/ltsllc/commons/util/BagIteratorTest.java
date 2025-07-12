@@ -15,7 +15,8 @@ class BagIteratorTest {
         assert (iter.hasNext());
         Character candidate = iter.next();
         assert (candidate != null);
-        assert (bag.isEmpty());
+        BagIterator bagIterator = (BagIterator) iter;
+        assert (bagIterator.getList().isEmpty());
     }
 
     @Test
@@ -23,7 +24,8 @@ class BagIteratorTest {
         Bag<Character> bag = new Bag<Character>();
         Iterator<Character> iterator = bag.iterator();
         assert (!iterator.hasNext());
-        bag.add (new Character('a'));
+        BagIterator bagIterator = (BagIterator) iterator;
+        bagIterator.getList().add(new Character('a'));
         assert (iterator.hasNext());
     }
 }

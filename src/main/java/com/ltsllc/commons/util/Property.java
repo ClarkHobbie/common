@@ -16,7 +16,7 @@
 
 package com.ltsllc.commons.util;
 
-/******************************************************************************
+/**
  * A class that represents a property.
  */
 public class Property {

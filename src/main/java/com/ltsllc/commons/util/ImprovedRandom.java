@@ -21,6 +21,10 @@ import java.util.Random;
 
 /**
  * A subclass of {@link Random} that has some useful additions.
+ * <p>
+ *     Unlike {@link Random}, ImprovedRandom extends {@link SecureRandom}.  It provides methods like {@link #choose(Class, Object[])}
+ *     and {@link #nextInt(int, int)}.
+ * </p>
  *
  */
 public class ImprovedRandom extends SecureRandom {
