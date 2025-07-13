@@ -6,12 +6,13 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
-/******************************************************************************
+/**
  * A file containing text
- *
+ * <p>
  * This class represents a text file, which it represents as a {@link List}
  * of strings called text.
  */
@@ -26,20 +27,32 @@ public class TextFile {
 
     protected Path path;
 
-    /**************************************************************************
+    /**
      * Create an empty instance of the class.
      *
      */
     public TextFile() {
     }
 
-    /**************************************************************************
+    /**
      * Get the text in the file.
      *
      * @return The text in the file.
      */
     public List<String> getText() {
         return text;
+    }
+
+    /**
+     * Get the text as an array of strings.
+     */
+    public String[] getTextAsArray () {
+        String[] textAsArray = new String[text.size()];
+        for (int index = 0; index < text.size(); index++) {
+            textAsArray[index] = text.get(index);
+        }
+
+        return textAsArray;
     }
 
     public TextFile (String fileName) {
