@@ -64,7 +64,11 @@ public class TextFile {
         }
     }
 
-    /**************************************************************************
+    public boolean equals (TextFile other) {
+        return text.equals(other.text);
+    }
+
+    /**
      * Create a new instance of the class and read into memory if it exists.
      *
      * @param inFile The file that this instance represents.
