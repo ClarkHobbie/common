@@ -14,6 +14,7 @@ The various classes and their functions are
 * com.ltsllc.commons.util
   * Bag - the bag data structure
   * BagIterator - an iterator for a bag
+  * ImprovedArray - a class that improves on the Array class by adding methods like restOf 
   * ImprovedPaths - an improved version of the Paths class with methods like toPath(File) and
     appendToPath
   * ImprovedRandom - an improved version of the Random class with methods like nextInt and 
