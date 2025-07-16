@@ -9,7 +9,7 @@ class ImprovedArraysTest {
     @Test
     void restOf() {
         int[] original = { 1, 2, 3, 4 };
-        int[] copy = ImprovedArrays.restOf(original, 2, 2);
+        int[] copy = ImprovedArrays.restOf(original, 2);
 
         assert (copy.length == 2);
         assert (copy[0] == 3);
