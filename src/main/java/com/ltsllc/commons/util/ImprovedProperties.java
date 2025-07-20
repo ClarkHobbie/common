@@ -5,7 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Properties;
 
-/******************************************************************************
+/**
  * An improved version of the Properties class
  *
  * This class improves on its ancestor by offering
