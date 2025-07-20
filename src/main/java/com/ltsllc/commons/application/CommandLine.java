@@ -18,7 +18,7 @@ package com.ltsllc.commons.application;
 
 import java.util.Properties;
 
-/******************************************************************************
+/***
  * A command line.
  *
  * In order to be instantiable, a subclass must implement
@@ -29,7 +29,7 @@ import java.util.Properties;
  * {@link Switches} to define them.
  */
 abstract public class CommandLine {
-    /**************************************************************************
+    /**
      * Convert a string to a switch,
      *
      * The subclass should extend {@link Switches} to define the different
@@ -40,7 +40,7 @@ abstract public class CommandLine {
      */
     abstract public Switches toSwitch (String argument);
 
-    /**************************************************************************
+    /**
      * Return the string to print when the application doesn't have enough
      * arguments.
      *
@@ -48,7 +48,7 @@ abstract public class CommandLine {
      */
     abstract public String getUsageString();
 
-    /**************************************************************************
+    /**
      * The switches for the application.
      *
      * Subclasses should extend this enum and populate it with the switches
