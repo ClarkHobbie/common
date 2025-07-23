@@ -169,4 +169,13 @@ public class TextFile {
     public void store() {
         write();
     }
+
+    public String asString() throws IOException {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        for (String string : text) {
+            baos.write(string.getBytes());
+        }
+
+        return new String(baos.toByteArray());
+    }
 }

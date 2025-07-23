@@ -2,6 +2,9 @@ package com.ltsllc.commons.io;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+import java.io.InputStream;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class TextFileTest {
@@ -31,7 +34,19 @@ class TextFileTest {
     }
 
     @Test
-    void getInputStream() {
+    void getInputStream() throws Exception {
+        String[] text = {
+                "hi there",
+                "how are you?"
+        };
+        TextFile textFile = new TextFile();
+        textFile.setText(text);
+        String textAsString = textFile.asString();
+
+        InputStream inputStream = textFile.getInputStream();
+        String actual = new String(inputStream.readAllBytes());
+
+        assert (textAsString.equalsIgnoreCase(actual));
     }
 
     @Test
@@ -49,5 +64,17 @@ class TextFileTest {
         for (int index = 0;index < text.length; index++) {
             assert (text[index].equalsIgnoreCase(array[index]));
         }
+    }
+
+    @Test
+    void asString() throws IOException {
+        String actual = "hi there";
+        String[] strings = { actual };
+        TextFile textFile = new TextFile();
+        textFile.setText(strings);
+
+        String string = textFile.asString();
+
+        assert (actual.equalsIgnoreCase(string));
     }
 }
