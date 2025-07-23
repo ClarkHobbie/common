@@ -33,4 +33,21 @@ class TextFileTest {
     @Test
     void getInputStream() {
     }
+
+    @Test
+    void getTextAsArray() {
+        String[] text = {
+                "hi there",
+                "how are you?"
+        };
+        TextFile textFile = new TextFile();
+        textFile.setText(text);
+
+        String[] array = textFile.getTextAsArray();
+
+        assert (text.length == array.length);
+        for (int index = 0;index < text.length; index++) {
+            assert (text[index].equalsIgnoreCase(array[index]));
+        }
+    }
 }
