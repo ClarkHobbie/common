@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -143,5 +144,27 @@ class TextFileTest {
         String string = textFile.asString();
 
         assert (actual.equalsIgnoreCase(string));
+    }
+
+    @Test
+    void getOutputStream() throws IOException {
+        String[] original = {
+                "hello",
+                "world"
+        };
+
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String string : original) {
+            stringBuilder.append(string);
+        }
+        String originalString = stringBuilder.toString();
+
+        TextFile textFile = new TextFile();
+        OutputStream outputStream = textFile.getOutputStream();
+        outputStream.write("hello".getBytes());
+        outputStream.write("world".getBytes());
+        String actual = new String(textFile.toBytes());
+
+        assert (originalString.equalsIgnoreCase(actual));
     }
 }

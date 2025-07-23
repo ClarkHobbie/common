@@ -6,7 +6,6 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -24,6 +23,8 @@ public class TextFile {
     /* an image of the file in memory */
 
     protected List<String> text = new ArrayList<>();
+
+    protected ByteArrayOutputStream byteArrayOutputStream = null;
 
     protected Path path;
 
@@ -161,6 +162,14 @@ public class TextFile {
         return new InputStreamReader(getInputStream());
     }
 
+    public OutputStream getOutputStream () throws IOException {
+        if (byteArrayOutputStream == null) {
+            byteArrayOutputStream = new ByteArrayOutputStream();
+        }
+
+        return byteArrayOutputStream;
+    }
+
     public void setText(ArrayList<String> list) {
         String[] strings = list.toArray(getText().toArray(new String[0]));
         setText(strings);
@@ -171,11 +180,21 @@ public class TextFile {
     }
 
     public String asString() throws IOException {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        for (String string : text) {
-            baos.write(string.getBytes());
-        }
 
-        return new String(baos.toByteArray());
+        if (byteArrayOutputStream == null) {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+            for (String string : text) {
+                baos.write(string.getBytes());
+            }
+
+            return new String(baos.toByteArray());
+        } else {
+            return new String(byteArrayOutputStream.toByteArray());
+        }
+    }
+
+    public byte[] toBytes() {
+        return byteArrayOutputStream.toByteArray();
     }
 }
