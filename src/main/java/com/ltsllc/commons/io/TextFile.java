@@ -92,7 +92,21 @@ public class TextFile {
         }
     }
 
-    public void write() {
+    public void write() throws IOException {
+        if (null != byteArrayOutputStream) {
+            writeByteArrayOutputStream();
+        } else {
+            writeText();
+        }
+    }
+
+    public void writeByteArrayOutputStream() throws IOException {
+        FileOutputStream fileOutputStream = new FileOutputStream(file);
+        fileOutputStream.write(byteArrayOutputStream.toByteArray());
+        fileOutputStream.close();
+    }
+
+    public void writeText () {
         FileWriter fileWriter = null;
         BufferedWriter bufferedWriter = null;
         File file = path.toFile();
@@ -109,7 +123,6 @@ public class TextFile {
 
         bufferedWriter = new BufferedWriter(fileWriter);
         for (String string : text) {
-
             try {
                 bufferedWriter.write(string);
                 bufferedWriter.newLine();
@@ -175,7 +188,7 @@ public class TextFile {
         setText(strings);
     }
 
-    public void store() {
+    public void store() throws IOException {
         write();
     }
 

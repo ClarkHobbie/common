@@ -67,6 +67,28 @@ class TextFileTest {
     }
 
     @Test
+    void storeByteArray () throws IOException {
+        File file = new File("test");
+
+        try {
+            TextFile textFile = new TextFile(file);
+            OutputStream outputStream = textFile.getOutputStream();
+            outputStream.write("hello".getBytes());
+            outputStream.write("world".getBytes());
+            textFile.store();
+
+            FileInputStream fileInputStream = new FileInputStream(file);
+            String output = new String(fileInputStream.readAllBytes());
+
+            assert (output.startsWith("hello"));
+        } finally {
+            if (file.exists()) {
+                file.delete();
+            }
+        }
+    }
+
+    @Test
     void load() throws IOException {
         File file = new File("test");
 
