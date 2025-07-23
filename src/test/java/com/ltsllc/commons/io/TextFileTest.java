@@ -2,8 +2,7 @@ package com.ltsllc.commons.io;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -30,7 +29,38 @@ class TextFileTest {
     }
 
     @Test
-    void load() {
+    void load() throws IOException {
+        File file = new File("test");
+
+        String[] actual = {
+                "hello",
+                "world"
+        };
+
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream(file);
+            for (String string : actual) {
+                fileOutputStream.write(string.getBytes());
+            }
+            fileOutputStream.close();
+
+            TextFile textFile = new TextFile(file);
+            textFile.load();
+
+            String actualString = textFile.asString();
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            for (String string : actual) {
+                baos.write(string.getBytes());
+            }
+            String expected = new String(baos.toByteArray());
+
+            assert (actualString.equalsIgnoreCase(expected));
+        } finally {
+            if (file.exists()) {
+                file.delete();
+            }
+        }
     }
 
     @Test
