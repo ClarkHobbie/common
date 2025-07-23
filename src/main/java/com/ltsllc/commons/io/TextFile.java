@@ -183,7 +183,7 @@ public class TextFile {
         return byteArrayOutputStream;
     }
 
-    public void setText(ArrayList<String> list) {
+    public void setText(List<String> list) {
         String[] strings = list.toArray(getText().toArray(new String[0]));
         setText(strings);
     }

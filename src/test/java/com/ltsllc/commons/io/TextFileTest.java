@@ -189,4 +189,58 @@ class TextFileTest {
 
         assert (originalString.equalsIgnoreCase(actual));
     }
+
+    @Test
+    void writeByteArrayOutputStream() throws IOException {
+        File file = new File("test");
+
+        try {
+            TextFile textFile = new TextFile(file);
+            List<String> list = new ArrayList<>();
+            list.add("whatever");
+            textFile.setText(list);
+
+            OutputStream outputStream = textFile.getOutputStream();
+            outputStream.write("hello".getBytes());
+            outputStream.write("world".getBytes());
+
+            textFile.store();
+
+
+            FileInputStream fileInputStream = new FileInputStream(file);
+            String output = new String(fileInputStream.readAllBytes());
+            fileInputStream.close();
+
+            assert(output.startsWith("hello"));
+        } finally {
+            if (file.exists()) {
+                file.delete();
+            }
+        }
+
+    }
+
+    @Test
+    void writeText() throws IOException {
+        File file = new File("test");
+
+        try {
+            TextFile textFile = new TextFile(file);
+            List<String> list = new ArrayList<>();
+            list.add("hello");
+            list.add("world");
+            textFile.setText(list);
+            textFile.store();
+
+            FileInputStream fileInputStream = new FileInputStream(file);
+            String output = new String(fileInputStream.readAllBytes());
+            fileInputStream.close();
+
+            assert (output.startsWith("hello"));
+        } finally {
+            if (file.exists()) {
+                file.delete();
+            }
+        }
+    }
 }
