@@ -10,9 +10,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class TextFileTest {
 
-    /**************************************************************************
+    /***
      * Test {@link TextFile}'s ability to use an array of Strings.
-     **************************************************************************/
+     */
     @Test
     void setText() {
         String[] text = {
