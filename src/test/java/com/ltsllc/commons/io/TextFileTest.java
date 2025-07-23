@@ -3,6 +3,8 @@ package com.ltsllc.commons.io;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -25,7 +27,42 @@ class TextFileTest {
     }
 
     @Test
-    void write() {
+    void write() throws IOException {
+        File file = new File("test");
+
+        String[] actual = {
+                "hello",
+                "world"
+        };
+
+        try {
+            if (file.exists()) {
+                file.delete();
+            }
+
+            TextFile textFile = new TextFile(file);
+            textFile.setText(actual);
+            textFile.write();
+
+            FileReader fileReader = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            List<String> list = new ArrayList<>();
+            for (String string = bufferedReader.readLine(); string != null; string = bufferedReader.readLine()) {
+                list.add(string);
+            }
+
+            List<String> actualList = new ArrayList<>();
+            for (String string : actual) {
+                actualList.add(string);
+            }
+
+            assert (actualList.equals(list));
+        } finally {
+            if (file.exists()) {
+                file.delete();
+            }
+        }
     }
 
     @Test
