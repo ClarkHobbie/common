@@ -7,7 +7,7 @@ import java.util.Properties;
 
 /**
  * An improved version of the Properties class
- *
+ * <p>
  * This class improves on its ancestor by offering
  * <UL>
  * <LI>getting an INTEGER property</LI>
@@ -25,7 +25,7 @@ public class ImprovedProperties extends Properties {
 
     /**
      * get an integer property
-     *
+     * <p>
      * This method translates a String property to an integer property.  In the case where the named property
      * is null, the method returns 0.
      *
@@ -46,7 +46,7 @@ public class ImprovedProperties extends Properties {
 
     /**
      * get an integer property, with a default value.
-     *
+     * <p>
      * If the named property is null, then the method returns the default value.
      *
      * @param name The name of the property.
@@ -64,7 +64,7 @@ public class ImprovedProperties extends Properties {
 
     /**
      * set a bunch of properties if they are undefined (null)
-     *
+     * <p>
      * This method sets properties if they are null.
      *
      * @param properties The properties and values to define if they are
@@ -100,7 +100,7 @@ public class ImprovedProperties extends Properties {
 
     /**
      * Get a property as a long value or take the default value if it is not defined.
-     *
+     * <p>
      * Note that the if the default value is null, then the method returns 0.
      *
      * @param property The property to get.
@@ -137,7 +137,6 @@ public class ImprovedProperties extends Properties {
 
     /**
      * Get a property value as a long
-     *
      *
      * @param property The property to get.
      * @return The properties value, as a long or 0 if an exception is thrown while parsing the property or the property

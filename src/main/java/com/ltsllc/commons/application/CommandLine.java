@@ -20,10 +20,10 @@ import java.util.Properties;
 
 /***
  * A command line.
- *
+ * <p>
  * In order to be instantiable, a subclass must implement
  * {@link #toSwitch(String)} and {@link #getUsageString()}.
- *
+ * <p>
  * Command lines have switches that can be present or absent to control the
  * application.  If the application has switches, it should subclass
  * {@link Switches} to define them.
@@ -31,7 +31,7 @@ import java.util.Properties;
 abstract public class CommandLine {
     /**
      * Convert a string to a switch,
-     *
+     * <p>
      * The subclass should extend {@link Switches} to define the different
      * switches for the application, and return one of them in this method.
      *
@@ -50,7 +50,7 @@ abstract public class CommandLine {
 
     /**
      * The switches for the application.
-     *
+     * <p>
      * Subclasses should extend this enum and populate it with the switches
      * the application uses.
      */

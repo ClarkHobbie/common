@@ -89,7 +89,7 @@ public class ImprovedFile extends File {
 
     /**
      * Change the file's time of last modification
-     *
+     * <p>
      * This method creates a file if not present, and updates its time of last write if the file does exist.
      *
      * @throws IOException If there is a problem with the file
