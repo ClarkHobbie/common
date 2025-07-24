@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-/******************************************************************************
+/**
  * A class that returns its items in a random order.
  *
  * @see ImprovedRandom

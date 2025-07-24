@@ -1,5 +1,8 @@
 package com.ltsllc.commons;
 
+/**
+ * An {@link Exception} whose source is ltsllc.
+ */
 public class LtsllcException extends Exception {
 
     public LtsllcException () {

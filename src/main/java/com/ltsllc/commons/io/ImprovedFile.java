@@ -5,7 +5,7 @@ import com.ltsllc.commons.LtsllcException;
 import java.io.*;
 import java.net.URI;
 
-/******************************************************************************
+/**
  * A {@link File} with some useful methods.
  */
 public class ImprovedFile extends File {
@@ -40,7 +40,7 @@ public class ImprovedFile extends File {
         return temp;
     }
 
-    /*
+    /**
      * Copy the file to another file that the method creates
      *
      * @param newFile The file to copy to

@@ -12,8 +12,7 @@ import java.util.List;
 /**
  * A file containing text
  * <p>
- * This class represents a text file, which it represents as a {@link List}
- * of strings called text.
+ * This class represents a text file.
  */
 public class TextFile {
     /* the associated file */

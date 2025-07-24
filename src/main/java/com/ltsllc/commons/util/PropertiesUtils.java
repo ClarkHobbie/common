@@ -194,7 +194,7 @@ public class PropertiesUtils {
         return result;
     }
 
-    /**************************************************************************
+    /**
      * Return a list of {@link Property} objects that are the properties passed
      * to this method.
      *

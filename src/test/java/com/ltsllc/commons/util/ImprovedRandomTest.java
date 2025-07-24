@@ -1,11 +1,8 @@
 package com.ltsllc.commons.util;
 
-import com.ltsllc.commons.test.TestCase;
 import org.junit.Test;
 
-import java.security.SecureRandom;
-
-public class ImprovedRandomTest extends TestCase {
+public class ImprovedRandomTest {
     @Test
     public void choose () {
         ImprovedRandom improvedRandom = new ImprovedRandom();

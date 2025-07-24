@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-/******************************************************************************
+/**
  * An {@link Iterator} for a bag.
  *
  * The items in the bag are returned by {@link #next()} are in a random order.

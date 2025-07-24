@@ -25,7 +25,6 @@ import java.util.Random;
  *     Unlike {@link Random}, ImprovedRandom extends {@link SecureRandom}.  It provides methods like {@link #choose(Class, Object[])}
  *     and {@link #nextInt(int, int)}.
  * </p>
- *
  */
 public class ImprovedRandom extends SecureRandom {
     private boolean wasNegative;
