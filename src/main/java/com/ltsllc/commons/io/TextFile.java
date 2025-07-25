@@ -29,7 +29,6 @@ public class TextFile {
 
     /**
      * Create an empty instance of the class.
-     *
      */
     public TextFile() {
     }

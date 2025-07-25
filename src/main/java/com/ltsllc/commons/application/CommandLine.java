@@ -26,7 +26,7 @@ import java.util.Properties;
  * <p>
  * Command lines have switches that can be present or absent to control the
  * application.  If the application has switches, it should subclass
- * {@link Switches} to define them.
+ * {@link #toSwitch(String)} to define them.
  */
 abstract public class CommandLine {
     /**
