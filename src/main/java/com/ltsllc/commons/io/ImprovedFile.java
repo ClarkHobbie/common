@@ -4,6 +4,7 @@ import com.ltsllc.commons.LtsllcException;
 
 import java.io.*;
 import java.net.URI;
+import java.util.Arrays;
 
 /**
  * A {@link File} with some useful methods.
@@ -40,7 +41,39 @@ public class ImprovedFile extends File {
         return temp;
     }
 
-    /**
+    public boolean contentsEquals (ImprovedFile other) throws IOException {
+        FileInputStream fileInputStream1 = new FileInputStream(this);
+        FileInputStream fileInputStream2 = new FileInputStream(other);
+
+        try {
+            byte[] buffer1 = new byte[BUFFER_SIZE];
+            byte[] buffer2 = new byte[BUFFER_SIZE];
+
+            int bytesRead1 = fileInputStream1.read(buffer1);
+            int bytesRead2 = fileInputStream2.read(buffer2);
+
+            for (bytesRead1 = fileInputStream1.read(buffer1); bytesRead1 != -1; bytesRead1 = fileInputStream1.read(buffer1)) {
+                bytesRead2 = fileInputStream2.read(buffer2);
+
+                if (bytesRead1 != bytesRead2) {
+                    return false;
+                }
+
+                for (int index = 0; index < bytesRead1; index++) {
+                    if (buffer1[index] != buffer2[index]) {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        } finally {
+            fileInputStream1.close();
+            fileInputStream2.close();
+        }
+    }
+
+   /**
      * Copy the file to another file that the method creates
      *
      * @param newFile The file to copy to
