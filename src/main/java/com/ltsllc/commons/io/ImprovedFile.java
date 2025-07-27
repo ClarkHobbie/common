@@ -41,6 +41,12 @@ public class ImprovedFile extends File {
         return temp;
     }
 
+    /**
+     * Are two files content equivalent?
+     * @param other The other file to compare with.
+     * @return Whether the two files are equivalent.
+     * @throws IOException If an error is encountered with a file.
+     */
     public boolean contentsEquals (ImprovedFile other) throws IOException {
         FileInputStream fileInputStream1 = new FileInputStream(this);
         FileInputStream fileInputStream2 = new FileInputStream(other);
