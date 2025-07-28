@@ -85,7 +85,7 @@ public class ImprovedProperties extends Properties {
         logger.debug("leaving setIfNull with properties = " + this);
     }
 
-    /*
+    /**
      * set a property if it is currently null
      *
      * This method set a property only if it is currently null, otherwise, it does nothing
@@ -158,5 +158,18 @@ public class ImprovedProperties extends Properties {
         }
         logger.debug("leaving getLongProperty with " + returnValue);
         return returnValue;
+    }
+
+    public boolean getBooleanProperty (String name) {
+        String value = getProperty(name);
+        if (value != null) {
+            return Boolean.valueOf(value);
+        } else {
+            return false;
+        }
+    }
+
+    public void setBooleanProperty (String name, boolean value) {
+        setProperty(name, Boolean.toString(value));
     }
 }
