@@ -1,6 +1,7 @@
 package com.ltsllc.commons.util;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
@@ -9,7 +10,7 @@ import java.util.List;
  *
  * @see ImprovedRandom
  */
-public class Bag<E> {
+public class Bag<E> implements Collection<E> {
     private static ImprovedRandom random = new ImprovedRandom();
     private List<E> components = new ArrayList<E>();
 
@@ -24,8 +25,29 @@ public class Bag<E> {
         this.components = new ArrayList<>(components);
     }
 
-    public void add (E item) {
-        components.add(item);
+    @Override
+    public boolean remove(Object o) {
+        return false;
+    }
+
+    @Override
+    public boolean containsAll(Collection<?> c) {
+        return false;
+    }
+
+    @Override
+    public boolean removeAll(Collection<?> c) {
+        return false;
+    }
+
+    @Override
+    public boolean retainAll(Collection<?> c) {
+        return false;
+    }
+
+    @Override
+    public void clear() {
+
     }
 
     /**
@@ -43,10 +65,6 @@ public class Bag<E> {
 
     public boolean empty () {
         return components.size() <= 0;
-    }
-
-    public boolean contains(E c) {
-        return components.contains(c);
     }
 
     public int size() {
@@ -70,8 +88,32 @@ public class Bag<E> {
         return new BagIterator<E>(this);
     }
 
+    @Override
+    public Object[] toArray() {
+        return components.toArray();
+    }
+
+    @Override
+    public <T> T[] toArray(T[] a) {
+        return components.toArray(a);
+    }
+
+    @Override
+    public boolean add(E e) {
+        return components.add(e);
+    }
+
     public boolean isEmpty() {
         return components.isEmpty();
+    }
+
+    @Override
+    public boolean contains(Object o) {
+        return components.contains(o);
+    }
+
+    public boolean addAll (Collection collection) {
+        return components.addAll(collection);
     }
 
 }
