@@ -17,6 +17,7 @@
 package com.ltsllc.commons.util;
 
 import java.security.SecureRandom;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -122,5 +123,10 @@ public class ImprovedRandom extends SecureRandom {
     public <T> T choose (Class<T> clazz, Object[] candidates) {
         int index = this.nextInt(0, candidates.length - 1);
         return (T) candidates[index];
+    }
+
+    public <T> T choose (List<T> list) {
+        int index = nextIndex(list.size());
+        return list.get(index);
     }
 }
