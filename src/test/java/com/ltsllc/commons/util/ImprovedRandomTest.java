@@ -1,6 +1,6 @@
 package com.ltsllc.commons.util;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ImprovedRandomTest {
     @Test

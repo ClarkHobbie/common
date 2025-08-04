@@ -71,7 +71,6 @@ public class ImprovedProperties extends Properties {
      *                   currently null.
      */
     public void setIfNull (Properties properties){
-        logger.debug("entering setIfNull with properties = " + properties);
         for (Object keyObject : properties.keySet()) {
             String key = keyObject.toString();
             String value = getProperty(key);
@@ -82,7 +81,6 @@ public class ImprovedProperties extends Properties {
 
             setProperty(key, value);
         }
-        logger.debug("leaving setIfNull with properties = " + this);
     }
 
     /**
@@ -91,11 +89,9 @@ public class ImprovedProperties extends Properties {
      * This method set a property only if it is currently null, otherwise, it does nothing
      */
     public void setIfNull (String key, String value) {
-        logger.debug("entering setIfNull with key = " + key + " and value = " + value);
         if (getProperty(key) == null) {
             setProperty(key, value);
         }
-        logger.debug("leaving setIfNull with properties = " + this);
     }
 
     /**

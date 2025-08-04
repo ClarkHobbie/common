@@ -4,7 +4,6 @@ import com.ltsllc.commons.LtsllcException;
 
 import java.io.*;
 import java.net.URI;
-import java.util.Arrays;
 
 /**
  * A {@link File} with some useful methods.

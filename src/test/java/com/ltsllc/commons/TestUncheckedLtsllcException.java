@@ -1,7 +1,6 @@
 package com.ltsllc.commons;
 
-import com.ltsllc.commons.UncheckedLtsllcException;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class TestUncheckedLtsllcException {
     @Test
