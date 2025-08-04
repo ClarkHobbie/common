@@ -33,14 +33,12 @@ public class ImprovedProperties extends Properties {
      * @return The property value
      */
     public int getIntProperty (String name) {
-        logger.debug("entering getIntProperty with name = " + name);
         String value = getProperty(name);
 
         if (null == value) {
             value = "0";
         }
         
-        logger.debug("leaving getIntProperty with value = " + value);
         return Integer.parseInt(value);
     }
 
@@ -104,17 +102,14 @@ public class ImprovedProperties extends Properties {
      * @return The properties value or the default value if the property is not defined
      */
     public long getLongProperty (String property, String defaultValue) {
-        logger.debug("entering getLongProperty whith property = " + property + ", and defaultValue = " + defaultValue);
         long returnValue = 0;
         if (getProperty(property) == null) {
-            logger.debug("null property, using defaultValue");
             if (null == defaultValue) {
                 logger.debug("null defaultVale returning 0");
             } else {
                 try {
                     returnValue = Long.parseLong(defaultValue);
                 } catch (Exception e) {
-                    logger.error("caught an exception in getLongProperty while parsing a long, returning 0",e);
                     returnValue = 0;
                 }
             }
@@ -122,12 +117,10 @@ public class ImprovedProperties extends Properties {
             try {
                 returnValue = Long.parseLong(getProperty(property));
             } catch (Exception e) {
-                logger.error("caught an exception in getLongProperty while parsing a long, returning 0",e);
                 returnValue = 0;
             }
         }
 
-        logger.debug ("leaving getLongProperty with return value = " + returnValue);
         return returnValue;
     }
 
@@ -139,20 +132,15 @@ public class ImprovedProperties extends Properties {
      * is null
      */
     public long getLongProperty (String property) {
-        logger.debug("entering getLongProperty with property = " + property);
-
         long returnValue = 0;
         if (null == getProperty(property)) {
-            logger.error ("null property, returning 0");
         } else {
             try {
                 returnValue = Long.parseLong(getProperty(property));
             } catch (Exception e) {
-                logger.error ("exception parsing long, returning 0",e);
                 returnValue = 0;
             }
         }
-        logger.debug("leaving getLongProperty with " + returnValue);
         return returnValue;
     }
 
