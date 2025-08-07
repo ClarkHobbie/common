@@ -51,6 +51,11 @@ public class HexConverter {
     }
 
 
+    public static byte[] regularStringToByteArray (String string) {
+        return string.getBytes();
+    }
+
+
     public static byte[] toByteArray (String s)
     {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
