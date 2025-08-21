@@ -2,6 +2,7 @@ package com.ltsllc.commons.io;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class ScannerWithUnget {
@@ -13,10 +14,14 @@ public class ScannerWithUnget {
     }
 
     public String next() {
-        if (!tokenCache.isEmpty()) {
-            return tokenCache.remove(0); // Retrieve from cache
-        } else {
-            return scanner.next(); // Read from Scanner
+        try {
+            if (!tokenCache.isEmpty()) {
+                return tokenCache.remove(0); // Retrieve from cache
+            } else {
+                return scanner.next(); // Read from Scanner
+            }
+        } catch (NoSuchElementException e) {
+            return null;
         }
     }
 

@@ -20,6 +20,17 @@ class ScannerWithUngetTest {
     }
 
     @Test
+    void nexiNull() {
+        String nullString = "";
+        Scanner scanner = new Scanner(nullString);
+        ScannerWithUnget scannerWithUnget = new ScannerWithUnget(scanner);
+
+        String token = scannerWithUnget.next();
+
+        assert (token == null);
+    }
+
+    @Test
     void unget() {
         String string = "hi scanner, how are you?";
         Scanner scanner = new Scanner(string);
